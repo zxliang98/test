@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let str = "1-2--3--4-5--6--7"
+    var recoverFromPreorder = function (S) {
+      var a = 0
+      var result = []
+      var mid = []
+      var arr = S.split('')
+      arr.forEach(item => {
+        if (Number(item)) {
+          mid.push({
+            name: item,
+            count: a
+          })
+          a = 0
+        } else {
+          a++
+        }
+      })
+      function sortFn(pname) {
+        return function (obj1, obj2) {
+          let val1 = obj1[pname]
+          let val2 = obj2[pname]
+          return val1 - val2
+        }
+      }
+      mid.sort(sortFn('count'))
+      mid.forEach(item => {
+        result.push(parseInt(item.name))
+      })
+      console.log(result)
+      return result
+    };
+    console.log(recoverFromPreorder(str));
+
+  </script>
+</body>
+
+</html>

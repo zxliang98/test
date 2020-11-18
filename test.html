@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    .out {
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+
+    .in {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 20px solid red;
+      /* border: 20px solid transparent;
+      border-bottom: 20px solid red;
+      border-left: 20px solid red;
+      transform: rotate(-45deg); */
+    }
+
+    .mask,
+    .mask2 {
+      width: 50%;
+      height: 100%;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+    }
+
+    .mask {
+      left: 0;
+      animation: move_up 2s forwards;
+    }
+
+    .mask2 {
+      right: 0;
+      animation: move_down 2s forwards;
+    }
+
+    @keyframes move_up {
+      from {
+        left: 0;
+      }
+
+      to {
+        left: -100px;
+      }
+    }
+
+    @keyframes move_down {
+      from {
+        right: 0;
+      }
+
+      to {
+        right: -100px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="out">
+    <div class="in"></div>
+    <!-- <div class="mask"></div>
+    <div class="mask2"></div> -->
+  </div>
+  <script>
+    var out = document.querySelector('.out')
+    var moveFn = (e) => {
+      console.log(e);
+    }
+    out.addEventListener('mousedown', (e) => {
+      out.style.top = '2px'
+      console.log(e,65454546546);
+      
+      out.addEventListener('mousemove', moveFn)
+    })
+    out.addEventListener('mouseup', () => {
+      out.style.top = '0'
+      out.removeEventListener('mousemove', moveFn)
+    })
+  </script>
+</body>
+
+</html>
